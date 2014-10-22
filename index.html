@@ -1,8 +1,104 @@
+<!doctype html>
 <html>
- 4 <title>Hello</title>
- 5 </head>
- 6 
- 7 <body>
- 8 <h1>Hello!</h1>
- 9 </body>
-</html>>
+<head>
+<meta charset="utf-8">
+<title>乐享公交客户端下载</title>
+<meta renderer="webkit">
+<link rel="shortcut icon" href="favicon.ico" />
+<link href="css/cssreset.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/app.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		//APP切换
+		//APP切换
+		(function(){
+			var ie8 = false;
+			var ie7 = false;
+			//var ie6 = false;
+			if (navigator.userAgent.indexOf("MSIE 7.0") != -1){
+				ie7 = true;
+			}
+			if(navigator.userAgent.indexOf("MSIE 8.0") != -1){
+				ie8 = true;
+			}
+			$('.tywl_app_android_btn').mouseover(
+					function(){
+
+						if(ie8||ie7){
+							$('.tywl_app_phonebtn a').removeClass('active');
+							$(this).addClass('active');
+							$('.tywl_app_applecontent').hide();
+							$('.tywl_app_phone').removeClass('apple');
+							$('.tywl_app_phone').show();
+						}
+						else{
+							$('.tywl_app_phonebtn a').removeClass('active');
+							$(this).addClass('active');
+							$('.tywl_app_applecontent').fadeOut();
+							$('.tywl_app_phone').fadeOut(400,function(){
+								$('.tywl_app_phone').removeClass('apple');
+								$('.tywl_app_phone').fadeIn(400);
+							});
+						}
+
+					}
+			);
+			$('.tywl_app_iphone_btn').mouseover(
+					function(){
+
+						if(ie8||ie7){
+							$('.tywl_app_phonebtn a').removeClass('active');
+							$(this).addClass('active');
+							$('.tywl_app_applecontent').show();
+							$('.tywl_app_phone').hide();
+							$('.tywl_app_phone').addClass('apple');
+							$('.tywl_app_phone').show();
+						}
+						else{
+							$('.tywl_app_phonebtn a').removeClass('active');
+							$(this).addClass('active');
+							$('.tywl_app_applecontent').fadeIn();
+							$('.tywl_app_phone').fadeOut(400,function(){
+								$('.tywl_app_phone').addClass('apple');
+								$('.tywl_app_phone').fadeIn(400);
+							});
+						}
+
+					}
+			);
+		})();
+
+	});
+</script>
+</head>
+
+<body>
+<div class="tywl_header">
+<div class= "tywl_app">
+	<div class="tywl_app_mainshow">
+		<div class="tywl_app_head">
+			<div class="tywl_app_warp">
+				<img class="tywl_app_head_content" src="./images/headcontent.png">
+				<div class="tywl_app_phonebtn">
+					<a class="tywl_app_android_btn active" href="./apk/bussmart-release.apk"></a>
+					<a class="tywl_app_iphone_btn" href="javascript:;"></a>
+				</div>
+				<div class="tywl_app_applecontent">
+				</div>
+				<div class="tywl_app_phone">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+</div>
+</body>
+</html>

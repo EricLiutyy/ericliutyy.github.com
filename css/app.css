@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background-image: none;
+	background-color: #fff;
+}
+.tywl_app{
+	min-width: 980px;
+}
+.tywl_app .tywl_app_warp{
+	width: 980px;
+	margin:0 auto;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_logo_head{
+	width: 100%;
+	min-width: 980px;
+	height: 66px;
+	background: rgba(0,0,0,0.4);
+}
+.tywl_app .tywl_app_mainshow .tywl_app_logo_head .tywl_app_warp {
+	padding-top:12px;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_logo_head .tywl_app_warp .tywl_app_logo:hover{
+
+	background-position: 0 0;
+}
+.tywl_app .tywl_app_mainshow{
+	min-width: 980px;
+	height:100%;
+	background: url(../images/main_bg.jpg) top center no-repeat;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head{
+	padding-top:100px;
+	height:100%;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp{
+	position: relative;
+	height: 548px;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_head_content{
+	width: 464px;
+	height:188px;
+	position: absolute;
+	left: 9px;
+	top:55px;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phonebtn{
+	width: 407px;
+	height: 58px;
+	position: absolute;
+	top: 305px;
+	left: 9px;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phonebtn a{
+	display: block;
+	width: 188px;
+	height: 58px;
+	overflow: hidden;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phonebtn a.tywl_app_android_btn{
+	background: url(../images/phonebtn.png) 0 0 no-repeat;
+	float: left;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phonebtn a.tywl_app_iphone_btn{
+	background: url(../images/phonebtn.png) -220px 0 no-repeat;
+	float: right;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phonebtn a.tywl_app_android_btn.active{
+	background-position: 0 -96px;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phonebtn a.tywl_app_iphone_btn.active{
+	background-position: -220px -96px;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_applecontent{
+	width: 244px;
+	height: 39px;
+	background: url(../images/applecontent.png) 0 0 no-repeat;
+	position: absolute;
+	left: 232px;
+	top: 375px;
+	display: none;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phone{
+	width: 512px;
+	height: 538px;
+	background: url(../images/phone.png) 0 0 no-repeat;
+	float: right;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_head .tywl_app_warp .tywl_app_phone.apple{
+	background-position: 0 0;
+}
+.tywl_app .tywl_app_mainshow .tywl_app_warp div{
+	margin:0 auto;
+}
+.clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    line-height:0;
+    clear:both;
+    visibility:hidden;
+}
+.clearfix{
+	zoom:1;
+}
