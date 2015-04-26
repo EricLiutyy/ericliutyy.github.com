@@ -634,9 +634,8 @@
       	var itemHtml = "";
        $each(json, function(idx, item){
        		itemHtml = itemHtml + 
-       			'<div class="col-lg-3 col-md-4 col-xs-6 gallery-item gallery-popup all '+ item.type + '>
-                    <figure>  
-                        <a href="images/pic/'+item.imageX+'" class="zoom"><img src="images/pic/'+item.imageX+'" class="img-responsive" /></a>
+       			'<div class="col-lg-3 col-md-4 col-xs-6 gallery-item gallery-popup all '+ item.type + '">' + 
+                    '<figure><a href="images/pic/'+item.imageX+'" class="zoom"><img src="images/pic/'+item.imageX+'" class="img-responsive" /></a>
                     </figure>
                 </div>';
        });
