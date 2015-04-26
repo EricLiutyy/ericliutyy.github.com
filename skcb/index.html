@@ -632,7 +632,7 @@
 
     $.getJSON('data/gallery-items.json', function(json){
       	var itemHtml = "";
-       $each(json, funtion(idx, item){
+       $each(json, function(idx, item){
        		itemHtml = itemHtml + 
        			'<div class="col-lg-3 col-md-4 col-xs-6 gallery-item gallery-popup all '+ item.type + '>
                     <figure>  
