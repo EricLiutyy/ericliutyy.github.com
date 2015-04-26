@@ -878,7 +878,7 @@ fieldset[disabled] .btn-link:focus {
   display: inline-block;
   font-weight: 500;
   font-family: "simyou-webfont";
-  font-size: 18px;  //Z
+  font-size: 18px; 
   line-height: 28px;
   padding: 22px 20px;
   -webkit-transition: background-color .25s, color .25s, border-bottom-color .25s;
@@ -5047,7 +5047,7 @@ form .btn {
 /* ========== 7. GALLERY SECTION ========== */
 #gallery {
   background-color: #E0FFFF;
-  padding-top: 30px;  //Z
+  padding-top: 30px;
   font-family: "simyou-webfont";
   -webkit-backface-visibility: hidden;
 }
@@ -5176,7 +5176,7 @@ form .btn {
 #pricing {
   background-color: #ecf0f1;
   text-align: center;
-  padding-top: 15px;  //Z
+  padding-top: 15px;
 }
 #pricing .lead1 {
   margin-bottom: 5px;
@@ -5281,7 +5281,7 @@ form .btn {
 
 /* ========== 11. FAQ & CONTACT SECTION ========== */
 #faq{
-    padding-top: 15px;  //Z
+    padding-top: 15px;
 }
 #faq header{
     font-family: "simyou-webfont" !important;
