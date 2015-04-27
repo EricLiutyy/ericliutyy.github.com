@@ -148,19 +148,28 @@ $(document).ready(function() {
 
 $(window).load(function(){
 
-	var $container = $('#gallery-items'),
+     var $container = $('#gallery-items'),
         $select = $('#filters select');
 
     $container.isotope({
         itemSelector: '.gallery-item'
     });
 
-    $select.change(function() {
-        var filters = $(this).val();
-;
-        $container.isotope({
-            filter: filters
-        });
+    ///
+    $filterBtns = $('#filters #themeSelectBtn');
+    $("#filters #themeSelectBtn button").bind("click",function() {
+        var type = $(this).html();
+        $("#filters #themeSelectBtn button" ).each(function (i) {
+             var inType = $(this).html();
+             if ( inType == type ) {
+                    $(this).addClass("btn-info");
+                    var filters = $(this).val();
+                    $container.isotope({
+                      filter: filters
+                  });
+             } else {
+                    $(this).removeClass("btn-info btn-default");
+             }
+           });
     });
-    
 })

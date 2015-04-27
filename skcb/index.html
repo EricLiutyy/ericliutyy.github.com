@@ -68,12 +68,12 @@
     <section id="gallery">
         <div class="container">
             <div id="filters" class="gallery-filter">
-                <select>
-                    <option value="*">游戏主题</option>
-                    <option value=".story">情节主题</option>
-                    <option value=".dream">梦幻主题</option>
-                    <option value=".tech">科幻主题</option>
-                </select>    
+                <div class="btn-group" role="group" aria-label="..." id="themeSelectBtn">
+                           <button type="button" class="btn btn-info" value="*">所有主题</button>
+                           <button type="button" class="btn btn-default" value=".story">情节主题</button>
+                           <button type="button" class="btn btn-default" value=".dream">梦幻主题</button>
+                           <button type="button" class="btn btn-default" value=".tech">科幻主题</button>
+                    </div>
             </div>
             <div id="gallery-items">
                 <div class="col-lg-3 col-md-4 col-xs-6 gallery-item gallery-popup all story">
@@ -286,7 +286,7 @@
     <section id="faq">
         <div class="container">
             <header>
-                <h3>F.A.Q.</h3>
+                <img src="images/support.svg" alt="" title="" />
                 <p class="lead">您有任何疑问或者洽谈，请随时联系我们</p>
             </header>
             <div class="row">
@@ -344,8 +344,24 @@
                             </div>
                         </div>
                     </div> 
+                    
+                </div><!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <!--
+                    <div class="row contact-intro">
+                        <div class="col-md-3 text-right"><img src="images/support.svg" alt="" title="" /></div>
+                        <div class="col-md-9"><p class="lead1">还有疑问，请右侧在线咨询或者留下您的联系方式及信息</p></div>                        
+                    </div>
+                    <form id="contact-form">
+                        <input type="text" id="name" name="name" class="form-control input-hg" placeholder="您的姓名" />
+                        <input type="text" id="email" name="email" class="form-control input-hg" placeholder="你的邮件\电话\QQ或微信" />
+                        <textarea class="form-control input-hg" rows="4" id="message" name="message" placeholder="您的问题或建议"></textarea>
+                        <button type="submit" class="btn btn-inverse btn-hg btn-block" name="submit">发送</button>
+                    </form>
+                     <div id="contact-error"></div>
+                     -->
                     <div class="alert">
-                        <p class="lead">联系方式</p>
+                        <p class="lead">联系方式<small>(右侧在线咨询)</small></p>
                         <div class="row">
                           <div class="col-md-3 col-xs-6 text-left">
                             <strong>地址</strong>
@@ -372,25 +388,11 @@
                           </div>
                           <div class="col-md-9 col-xs-6">
                             <address>
-                               EricLiutyy<br>
+                               Max_shikongchengbao<br>
                             </address>
                           </div>
                         </div><!-- /row -->
                     </div><!-- /alert -->
-                </div><!-- /col-md-6 -->
-                <div class="col-md-6">
-                    <div class="row contact-intro">
-                        <div class="col-md-3 text-right"><img src="images/support.svg" alt="" title="" /></div>
-                        <div class="col-md-9"><p class="lead1">还有疑问，请右侧在线咨询或者留下您的联系方式及信息</p></div>                        
-                    </div>
-                    <!--////////// CONTACT FORM //////////-->
-                    <form id="contact-form">
-                        <input type="text" id="name" name="name" class="form-control input-hg" placeholder="您的姓名" />
-                        <input type="text" id="email" name="email" class="form-control input-hg" placeholder="你的邮件\电话\QQ或微信" />
-                        <textarea class="form-control input-hg" rows="4" id="message" name="message" placeholder="您的问题或建议"></textarea>
-                        <button type="submit" class="btn btn-inverse btn-hg btn-block" name="submit">发送</button>
-                    </form>
-                     <div id="contact-error"></div>
                     <!--////////// end CONTACT FORM ///////////-->
                 </div><!-- /col-md-6-->
             </div>
@@ -422,8 +424,8 @@
         <div class="im-tel">
             <div>电话咨询</div>
             <div>王女士</div>
-            <div class="tel-num">Tel:13811444610</div>
-            <div class="tel-num">座机:01012566378</div>
+            <div class="tel-num">Tel:13389518913</div>
+            <div class="tel-num">座机:**********</div>
         </div>
         <div class="im-footer" style="position:relative">
             <div class="weixing-container">
