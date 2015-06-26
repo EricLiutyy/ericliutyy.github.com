@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>9-1.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script>
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_s_header_h = $('.J_s_header').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_s_header_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+			var self = $('.J_listview_five li p'); 
+			self.each(function(){ 
+				var objString = $(this).text(); 
+				$(this).attr("orig" ,objString);
+				var objLength = $(this).text().length; 
+				var num = 42; 
+					if(objLength > num){ 
+						$(this).attr('title',objString); 
+						objString = $(this).text(objString.substring(0,num) + '...'); 
+					}
+			});
+			
+	  	});
+    </script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">瓣膜病</h1>
+       <!--加搜索-->
+    </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:2.7em;bottom: 0em;">
+        <div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent">
+            <ul data-role="listview" class="J_listview_two J_listview_five">
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二尖瓣闭锁不全</h4>
+                                <p>概述：风湿性心脏病二尖瓣闭锁不全是由于反复风湿性炎症后所遗留的二尖瓣瓣膜损害风湿性心脏病二尖瓣闭锁不全是由于反复风湿性炎症后所遗留的二尖瓣瓣膜损害</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二尖瓣脱垂综合征</h4>
+                                <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二甲双胍</h4>
+                                <p>概述：二尖瓣脱垂综合征(mitral valve prolapse syndrome，MVP)系指二尖瓣叶过长，在收</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二尖瓣狭窄</h4>
+                                <p>概述：风湿热是临床上二尖瓣狭窄(mitral stenosis)最常见病因。多次反复风湿热发作而</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>老年性心瓣膜病</h4>
+                                <p>概述：老年性心瓣膜病又称老年退行性心脏瓣膜病(com、plications of degenerative cardiac</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>三尖瓣闭锁</h4>
+                                <p>987年，Kreysig首先清楚地描述了心脏三尖瓣闭锁的解剖特征，即右心室与右心房之间缺乏</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二尖瓣闭锁不全</h4>
+                                <p>概述：风湿性心脏病二尖瓣闭锁不全是由于反复风湿性炎症后所遗留的二尖瓣瓣膜损害风湿性心脏病二尖瓣闭锁不全是由于反复风湿性炎症后所遗留的二尖瓣瓣膜损害</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二尖瓣脱垂综合征</h4>
+                                <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二甲双胍</h4>
+                                <p>概述：二尖瓣脱垂综合征(mitral valve prolapse syndrome，MVP)系指二尖瓣叶过长，在收</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>二尖瓣狭窄</h4>
+                                <p>概述：风湿热是临床上二尖瓣狭窄(mitral stenosis)最常见病因。多次反复风湿热发作而</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>老年性心瓣膜病</h4>
+                                <p>概述：老年性心瓣膜病又称老年退行性心脏瓣膜病(com、plications of degenerative cardiac</p>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                                <h4>三尖瓣闭锁</h4>
+                                <p>987年，Kreysig首先清楚地描述了心脏三尖瓣闭锁的解剖特征，即右心室与右心房之间缺乏</p>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+</div>
+</body>
+</html>

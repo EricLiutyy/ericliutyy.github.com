@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4.2.1医院详情页2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script>
+$(document).ready(function(){
+	var self = $('.J_g_cuss div p'); 
+	self.each(function(){ 
+		var objString = $(this).text(); 
+		$(this).attr("orig" ,objString);
+		var objLength = $(this).text().length; 
+		var num = 38; 
+			if(objLength > num){ 
+				$(this).attr('title',objString); 
+				objString = $(this).text(objString.substring(0,num) + '...'); 
+			}else{
+				$(this).parent().find("a").hide();
+				$(this).css('padding-bottom','0.5em')
+			}
+	}) 
+	var self1 = $('.J_g_cuss div a'); 
+	$.each(self1,function(i,o){
+		$(o).bind("click",function(){
+			var aclass = $(this).attr("class");
+			if("ui-icon-carat-u ui-btn-icon-bottom ui-link" == aclass){ //up
+				$(this).attr("class","ui-icon-carat-d ui-btn-icon-bottom ui-link");
+				 var p = $(this).parent().find("p");
+				 p.text( p.attr("orig").substring(0,38) + '...' );
+			}
+			if("ui-icon-carat-d ui-btn-icon-bottom ui-link" == aclass){ //down
+				$(this).attr("class","ui-icon-carat-u ui-btn-icon-bottom ui-link");
+				 var p = $(this).parent().find("p");
+				 p.text( p.attr("orig") );
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">第一人民医院</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div role="main">    	
+        <ul data-role="listview" data-input="#filter-for-listview" class="J_listview_one J_listview_four J_listview_four_a">
+            <li data-icon="false">
+                <a href="#">
+                <img src="style-J/image/text-pic2.jpg">
+                <h2>第一人民医院第一人民医院第一人民医院第一人民医院第一人民医院<span>三甲</span><!--无三甲用此样式<span style="display:none"></span>--></h2>
+                <p></p>
+                <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3></a>
+            </li>
+        </ul>
+        <div class="ui-grid-c J_grid_bd-tc">
+        	<div class="ui-block-a">4.7分<br/>就医环境</div>
+        	<div class="ui-block-b">4.7分<br/>服务态度</div>
+        	<div class="ui-block-c">4.7分<br/>医疗水平</div>
+        	<div class="ui-block-d">4.7分<br/>等候时间</div>
+        </div>
+        <ul data-role="listview" class="J_listview_g">
+        	<li>
+            	<a href="#">评价</a>
+            </li>
+        </ul>
+    	<div class="ui-grid-solo J_grid_a J_g_cuss">
+            <div class="ui-block-a">
+                <h3><label>黄**</label>2014-10-12<span class="J_icon_star_s"><i></i></span></h3>
+                <p>评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评评价评价评价评价评价评</p>
+                <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+            </div>
+            <div class="ui-block-a">
+                <h3><label>李**</label>2014-10-12<span class="J_icon_star_s"><i></i></span></h3>
+                <p>评价评价评价评价评价评价评价评价评价评价评价评价评价评价评</p>
+                <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+            </div>
+            <div class="ui-block-a">
+                <h3><label>刘**</label>2014-10-12<span class="J_icon_star_s"><i></i></span></h3>
+                <p>评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评评价评价评价评价评价评</p>
+                <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+            </div>
+        </div>
+        <ul data-role="listview" class="J_us">
+        	<li role="heading">联系方式</li>
+        	<li class="J_icon_add">新南区繁雄大道万象路新南区繁雄大道万象路新南区繁雄大道万象路新南区繁雄大道万象路新南区繁雄大道万象路</li>
+            <li class="J_icon_phone">0573-54865111<br/>0573-54865111</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

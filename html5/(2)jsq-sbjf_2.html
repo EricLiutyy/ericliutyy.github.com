@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>社保缴费计算器.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script>
+$(document).ready(function(){
+
+   // 此处是 jQuery 事件...
+	$('#popup_c a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_c input').val(s);
+	});
+	$('#popup_b a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_b input').val(s);
+	});
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">社保缴费计算器</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div role="main" class="J_content">
+        <form class="J_jsq_contain J_jsq_contain_b">
+            <div class="ui-field-contain">
+                 <div><label for="text-12">缴费方式</label></div>
+                 <a href="#popup_a" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value="自谋职业"/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-12">医保类型</label></div>
+                 <a href="#popup_b" class="popup_b" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value=""/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-12">养老缴费档次</label></div>
+                 <a href="#popup_c" class="popup_c" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value=""/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+            	<a class="ui-btn J_btn_color">计算</a>
+            </div>
+        </form>
+        <div class="J_reminder_box">
+        	<h4><i class="J_icon_reminder"></i>温馨提示：</h4>
+            <p>1、自谋职业者养老保险缴费档次，医疗保险缴费基数由本市上年度在岗职工平均工资决定。<br/>
+2、根据您选择医保类型和养老缴费档位的不同，您的缴费的金额会有所不同。<br/>
+3、计算结果仅供参考。</p>
+        </div>
+    </div>
+	<div data-role="popup" id="popup_c" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">第一档：529.00元</a></li>
+        	<li><a href="#" data-rel="back">第二档：662.00元</a></li>
+        	<li><a href="#" data-rel="back">第三档：1,323.00元</a></li>
+        	<li><a href="#" data-rel="back">第四档：1,985.00元</a></li>
+        </ul>
+    </div>
+	<div data-role="popup" id="popup_b" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">统账一</a></li>
+        	<li><a href="#" data-rel="back">统账二</a></li>
+        </ul>
+    </div>
+	<div data-role="popup" id="popup_a" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="(2)jsq-sbjf.html" target="_parent" data-rel="back">企业职工</a></li>
+        	<li><a href="(2)jsq-sbjf_2.html" target="_parent" data-rel="back">自谋职业</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4.1我的评价</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#one');
+  		    hs = $('#two');
+  		    hf = $('.oneID');
+  		    mlayer = $(".twoID");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            //window.location.reload();//刷新方式
+				
+				if(hm.css('display') == 'none') {
+	                hm.hide();
+	                hs.show();
+					window.location.href=window.location.href;//刷新方式
+	            }else{
+					window.location.href=window.location.href;//刷新方式
+	                hs.hide();
+	            	hm.show();
+	            }
+				
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_navbar_h = $('.J_navbar_a').height();
+			var header_h = $('.ui-header').height();
+			$('#mainContent').css({
+				"margin-top": J_navbar_h/10 + "em",
+			});//新添计算navbar高度
+			
+			$('#two').hide();
+			$('.oneID').click(function(){
+				$('#one').show();
+				$('#two').hide();
+			});
+			$('.twoID').click(function(){
+				$('#two').show();
+				$('#one').hide();
+			});
+			
+			var self = $('.J_g_were div p'); 
+			self.each(function(){ 
+				var objString = $(this).text(); 
+				$(this).attr("orig" ,objString);
+				var objLength = $(this).text().length; 
+				var num = 40; 
+					if(objLength > num){ 
+						$(this).attr('title',objString); 
+						objString = $(this).text(objString.substring(0,num) + '...'); 
+					}else{
+						$(this).parent().find("a").hide();
+						$(this).css('padding-bottom','0.5em')
+					}
+			}) 
+			var self1 = $('.J_g_were div a'); 
+			$.each(self1,function(i,o){
+				$(o).bind("click",function(){
+					var aclass = $(this).attr("class");
+					if("ui-icon-carat-u ui-btn-icon-bottom ui-link" == aclass){ //up
+						$(this).attr("class","ui-icon-carat-d ui-btn-icon-bottom ui-link");
+						 var p = $(this).parent().find("p");
+						 p.text( p.attr("orig").substring(0,40) + '...' );
+					}
+					if("ui-icon-carat-d ui-btn-icon-bottom ui-link" == aclass){ //down
+						$(this).attr("class","ui-icon-carat-u ui-btn-icon-bottom ui-link");
+						 var p = $(this).parent().find("p");
+						 p.text( p.attr("orig") );
+					}
+				});
+			});
+
+	  	});
+    </script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">我的评价</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div role="main">
+          <div data-role="navbar" data-grid="a" class="J_navbar_a J_posi_fixed" style="z-index:1000;">
+            <ul>
+              <li><a href="#" data-ajax="false" class="oneID ui-btn-foremost ui-btn-active">待评价</a></li>
+              <li><a href="#" data-ajax="false" class="twoID ui-btn-last">已评价</a></li>
+            </ul>
+          </div>
+          
+      <div id="scrollWrapper" class="scrollWrapper" style="top:3.5em;bottom:0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+          <div id="mainContent" style="top:0;bottom:0;">
+          
+          <div id="one">
+          	<ul data-role="listview" class="J_listview_two">
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>1111第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院第一人民医院第一人民医院第一人民医院第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12至2014-10-13</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12至2014-10-13</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+                <li><a href="#">
+                    <h2>2014-10-12</h2>
+                    <h3>222222第一人民医院<span style="float:right;">评价</span></h3></a>
+                </li>
+             </ul>
+          </div>
+          <div id="two">
+          	<div class="ui-grid-solo J_grid_a J_g_were">
+            	<div class="ui-block-a">
+                	<h2>就诊日期：2014-10-12<span>审核中</span></h2>
+                    <h3>就诊医院：第一人民医院<span><i></i></span></h3>
+                    <h4>评价日期：2014-10-12</h4>
+                    <p class="zishu" limit='12'>评价评价评价评价评价评价评价</p>
+                    <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+                </div>
+            	<div class="ui-block-a">
+                	<h2>就诊日期：2014-10-12<span>已通过</span></h2>
+                    <h3>就诊医院：第一人民医院<span><i></i></span></h3>
+                    <h4>评价日期：2014-10-12</h4>
+                    <p limit='10'>评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+                    <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+                </div>
+            	<div class="ui-block-a">
+                	<h2>就诊日期：2014-10-12<span>未通过</span></h2>
+                    <h3>就诊医院：第一人民医院第一人民医院第一人民医院第一人民医院第一人民医院<span><i></i></span></h3>
+                    <h4>评价日期：2014-10-12</h4>
+                    <p>评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+                    <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+                </div>
+            	<div class="ui-block-a">
+                	<h2>就诊日期：2014-10-12<span>默认</span></h2>
+                    <h3>就诊医院：第一人民医院<span><i></i></span></h3>
+                    <h4>评价日期：2014-10-12</h4>
+                    <p>评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价评价</p>
+                    <a class="ui-icon-carat-d ui-btn-icon-bottom" href="#"></a>
+                </div>
+            </div>
+          </div>
+          
+          </div>
+          <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+          
+        
+    </div>
+</div>
+</body>
+</html>

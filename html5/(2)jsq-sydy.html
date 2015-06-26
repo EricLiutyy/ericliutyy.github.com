@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>流产引产.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script>
+$(document).ready(function(){
+
+   // 此处是 jQuery 事件...
+	$('#popup_c a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_c input').val(s);
+	});
+	$('#popup_b a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_b input').val(s);
+	});
+	$('#popup_a a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_a input').val(s);
+	});
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">流产/引产</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div role="main" class="J_content">
+        <form class="J_jsq_contain">
+            <div class="ui-field-contain">
+                 <div><label for="text-12">妊娠时长</label></div>
+                 <a href="#popup_a" class="popup_a" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value="三个月以下"/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-12">就诊类型</label></div>
+                 <a href="#popup_b" class="popup_b" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value=""/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-12">宫外孕手术</label></div>
+                 <a href="#popup_c" class="popup_c" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value=""/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">缴费基数</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+            </div>
+            <div class="J_reminder_box pdnone">
+            	<p>*企业职工输入生产或流产上月养老保险缴费工资<br/>公务员输入生产或流产前12个月月平均工资
+                </p>
+            </div>
+            <div class="ui-field-contain pdnone">
+            	<a class="ui-btn J_btn_color">计算</a>
+            </div>
+        </form>
+        <div class="J_reminder_box">
+        	<h4><i class="J_icon_result"></i>计算结果：</h4>
+            <ul class="J_reminder_ul">
+            	<li>医学费用补偿：<b>200.00</b>元</li>
+                <li>生育津贴约为：<b>1500.00</b>元</li>
+            </ul>
+        	<h4><i class="J_icon_reminder"></i>温馨提示：</h4>
+            <p>1、由于生育待遇计算受众多因素影响，本工具仅针对生育津贴和门诊或住院的补偿费用进行试算，试算结果仅供参考，不作为实际待遇发放的依据。<br/>
+2、具有合法的婚姻关系证明及生育服务证明的人群，方可享受生育保险的补偿和津贴。</p>
+        </div>
+    </div>
+	<div data-role="popup" id="popup_c" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">是</a></li>
+        	<li><a href="#" data-rel="back">否</a></li>
+        </ul>
+    </div>
+	<div data-role="popup" id="popup_b" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">门诊</a></li>
+        	<li><a href="#" data-rel="back">住院</a></li>
+        </ul>
+    </div>
+	<div data-role="popup" id="popup_a" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">三个月以下</a></li>
+        	<li><a href="#" data-rel="back">三个月以上</a></li>
+        	<li><a href="#" data-rel="back">七个月以下</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

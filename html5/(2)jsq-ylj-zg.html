@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>养老金计算器-职工.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script>
+$(document).ready(function(){
+
+   // 此处是 jQuery 事件...
+	$('#popup_c a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_c input').val(s);
+	});
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">职工</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div role="main" class="J_content">
+        <form class="J_jsq_contain J_jsq_contain_c">
+            <div class="ui-field-contain">
+                 <div><label for="text-12">缴费类型</label></div>
+                 <a href="#popup_c" class="popup_c" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value="职工"/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-12">您的月工资</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>元</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-12">本市上年度社会平均工资</label></div>
+                 <input type="text" disabled="disabled" name="text-13" id="text-13" value="1,233.00">
+                 <span>元</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">现在年龄</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>岁</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">您打算退休时年龄</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>岁</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">您累计缴纳社保年数</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>年</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">您账户累计养老金额</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>元</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">默认工资增长率</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>%</span>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">默认职工工资增长率</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+                 <span>%</span>
+            </div>
+            <div class="ui-field-contain pdnone">
+            	<a class="ui-btn J_btn_color">计算</a>
+            </div>
+        </form>
+    </div>
+	<div data-role="popup" id="popup_c" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">职工</a></li>
+        	<li><a href="#" data-rel="back">居民</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

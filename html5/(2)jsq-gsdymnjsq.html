@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>工伤待遇模拟计算器.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script>
+$(document).ready(function(){
+
+   // 此处是 jQuery 事件...
+	$('#popup_c a').bind("click",function(){
+		var s = $(this).html();
+		$('.popup_c input').val(s);
+		//alert();
+		//$('#popup_c').hide();
+	});
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">工伤待遇模拟计算器</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div role="main" class="J_content">
+        <form class="J_jsq_contain">
+            <div class="ui-field-contain">
+                 <div><label for="text-12">工伤等级</label></div>
+                 <a href="#popup_c" class="popup_c" data-rel="popup" data-transition="pop" data-position-to="window">
+                 <input type="text" name="text-12" id="text-12" value=""/>
+                 </a>
+            </div>
+            <div class="ui-field-contain">
+                 <div><label for="text-13">月平均工资</label></div>
+                 <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+            </div>
+            <div class="ui-field-contain">
+            	<a class="ui-btn J_btn_color">计算</a>
+            </div>
+        </form>
+        <div class="J_reminder_box">
+        	<h4><i class="J_icon_reminder"></i>温馨提示：</h4>
+            <p>由于工商待遇计算受众多因素影响，本工具仅针对一次性伤残补助金和按月发放的伤残津贴进行试算，试算结果仅供参考，不作为实际待遇发放的依据。</p>
+        </div>
+    </div>
+	<div data-role="popup" id="popup_c" data-overlay-theme="b" data-corners="false">
+    	<ul data-role="listview" data-icon="false" class="J_jsq_popup">
+        	<li><a href="#" data-rel="back">一级</a></li>
+        	<li><a href="#" data-rel="back">二级</a></li>
+        	<li><a href="#" data-rel="back">三级</a></li>
+        	<li><a href="#" data-rel="back">四级</a></li>
+        	<li><a href="#" data-rel="back">五级</a></li>
+        	<li><a href="#" data-rel="back">六级</a></li>
+        	<li><a href="#" data-rel="back">七级</a></li>
+        	<li><a href="#" data-rel="back">八级</a></li>
+        	<li><a href="#" data-rel="back">九级</a></li>
+        	<li><a href="#" data-rel="back">十级</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

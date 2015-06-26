@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>8.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script src="style-J/js/J.healthcare.govern.js"></script><!--自定义js包-->
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_header_b_h = $('.J_header_b').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_header_b_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+	        $('#h_money_item').click(function(){
+	            if(hm.css('display') == 'none') {
+	                hf.hide();
+	                hs.hide();
+	                mlayer.show();
+	            	hm.show();
+					$(".J_ComboBox_upArrow").show();
+					$(".J_ComboBox_upArrow").css({ "left": "24%"});
+	            }else{
+	                hm.hide();
+	                mlayer.hide();
+					$(".J_ComboBox_upArrow").hide();
+	            }
+	        });
+	        
+	        $('#h_sort_item').click(function(){
+	            if(hs.css('display') == 'none') {
+	                hf.hide();
+	                hm.hide();
+	                mlayer.show();
+	            	hs.show();
+					$(".J_ComboBox_upArrow").show();
+					$(".J_ComboBox_upArrow").css({ "left": "74%"});
+	            }else{
+	                hs.hide();
+	                mlayer.hide();
+					$(".J_ComboBox_upArrow").hide();
+	            }
+	        });
+	        
+	        mlayer.click(function(){
+	            hm.hide();
+	            hs.hide();
+	        	hf.hide();
+	            mlayer.hide();
+				$('.J_ComboBox_upArrow').hide();
+	        });
+
+	  	});
+    </script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_header_b_a">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">药品</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <a href="dzpy-dzpy.html" target="_parent" class="J_icon_zoom">Open right new page</a>
+    </div>
+    	<div role="main" class="J_option J_option_two J_posi_fixed" style="z-index:3;">
+        	<div id="h_money_item"><a>地区</a></div>
+            <div id="h_sort_item"><a>筛选</a></div>
+            <div id="popupArea" class="J_popup_unbar">
+            	<div class="J_ComboBox_upArrow ds-none"></div>
+                <ul id="h_money" data-role="listview">
+                    <li>全部地区</li>
+                    <li>嘉兴市</li>
+                </ul>
+                <ul id="h_sort" data-role="listview" class="J_listview_noBor">
+                	<li>参保类型</li>
+                    <li>
+                    <form>
+                    <fieldset id ="rr1" data-role="controlgroup" data-type="horizontal" class="J_list_oncome" data-mini="true" > 
+						<label for="a">不限</label> 
+						<input type="radio" name="reimb" id="a" value="3" checked="checked"> 
+						<label for="REIMB_ALL">城镇居民</label> 
+						<input type="radio" name="reimb" id="REIMB_ALL" value="REIMB_ALL"> 
+						<label for="REIMB_PART">城乡居民</label>
+						<input type="radio" name="reimb" id="REIMB_PART" value="REIMB_PART">
+				    </fieldset>
+                    </form>
+                    </li>
+                	<li>参保类型</li>
+                    <li>
+                    <form>
+                    <fieldset id ="rr2" data-role="controlgroup" data-type="horizontal" class="J_list_oncome" data-mini="true" > 
+						<label for="0">不限</label> 
+						<input type="radio" name="reimb" id="0" value="0" checked="checked"> 
+						<label for="REIMB_NO">自费</label>
+						<input type="radio" name="reimb" id="REIMB_NO" value="REIMB_NO">
+						<label for="REIMB_ALL">全部报销</label> 
+						<input type="radio" name="reimb" id="REIMB_ALL" value="REIMB_ALL"> 
+						<label for="REIMB_PART">部分报销</label>
+						<input type="radio" name="reimb" id="REIMB_PART" value="REIMB_PART">
+				    </fieldset>
+                    </form>
+                    </li>
+                	<li>参保类型</li>
+                    <li>
+                    <form>
+                    <fieldset id ="rr3" data-role="controlgroup" data-type="horizontal" class="J_list_oncome" data-mini="true" > 
+						<label for="0">不限</label> 
+						<input type="radio" name="reimb" id="0" value="0" checked="checked"> 
+						<label for="REIMB_NO">自费</label>
+						<input type="radio" name="reimb" id="REIMB_NO" value="REIMB_NO">
+						<label for="REIMB_ALL">全部报销</label> 
+						<input type="radio" name="reimb" id="REIMB_ALL" value="REIMB_ALL"> 
+						<label for="REIMB_PART">部分报销</label>
+						<input type="radio" name="reimb" id="REIMB_PART" value="REIMB_PART">
+				    </fieldset>
+                    </form>
+                    </li>
+                	<li>参保类型</li>
+                    <li>
+                    <form>
+                    <fieldset id ="rr4" data-role="controlgroup" data-type="horizontal" class="J_list_oncome" data-mini="true" > 
+						<label for="0">不限</label> 
+						<input type="radio" name="reimb" id="0" value="0" checked="checked"> 
+						<label for="REIMB_NO">自费</label>
+						<input type="radio" name="reimb" id="REIMB_NO" value="REIMB_NO">
+						<label for="REIMB_ALL">全部报销</label> 
+						<input type="radio" name="reimb" id="REIMB_ALL" value="REIMB_ALL"> 
+						<label for="REIMB_PART">部分报销</label>
+						<input type="radio" name="reimb" id="REIMB_PART" value="REIMB_PART">
+				    </fieldset>
+                    </form>
+                    </li>
+                	<li>
+                        <fieldset class="ui-grid-a">
+                                <div class="ui-block-a"><button type="submit" class="J_btn_Nothing ui-btn ui-corner-all ui-btn-a">重置</button></div>
+                                <div class="ui-block-b"><button type="submit" class="J_btn_Nothing J_btn_Nothing_r ui-btn ui-corner-all ui-btn-a">完成</button></div>
+                        </fieldset>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:3.5em;bottom: 0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent" style="margin-top:2.1em;">
+                <ul data-role="listview" class="J_knowledge id_get">
+                    <li><a href="#">政策法规</a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>关于门（急）诊治疗特殊（规定）病种报销规定（就诊记录相关医保政策</p>
+                                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span>医保/政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>2015年嘉兴市人民政府关于印发嘉兴市职工基本医疗保险暂行办法的通知</p>
+                                    <span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                                    <h6>发布时间：2015-01-05</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>职工医疗保险服务诊疗项目调整（新增门诊诊查费项目报销比例）</p>
+                                    <span class="J_bgcolor_e">城镇职工</span><span class="J_bgcolor_d">报销比例</span><span>医保/政策</span>
+                                    <h6>发布时间：2014-08-14</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>关于调整失业保险金标准的通知</p>
+                                    <span class="J_bgcolor_d">缴费规定</span><span>失业/政策</span>
+                                    <h6>发布时间：2014-08-14</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>15关于公布符合嘉兴市职工基本医疗保险定点资格零售药店名单的通知</p>
+                                   <span class="J_bgcolor_e">城镇职工</span><span class="J_bgcolor_a">定点药店</span><span>医保/政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>关于启用《浙江省基本医疗保险和工伤保险药品目录》的通知</p>
+                                    <span class="J_bgcolor_a">药品目录</span><span>医保/工伤/政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                                   <span class="J_bgcolor_e">城镇职工</span><span>养老政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>嘉兴市人民政府关于完善企业职工基本养老保险制度的实施意见</p>
+                                    <span class="J_bgcolor_e">城镇职工</span><span>养老/政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#">办事指南</a></li>
+                    <div class="J_fordetailson_box ds-none">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>关于门（急）诊治疗特殊（规定）病种报销规定（就诊记录相关医保政策</p>
+                                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span>医保/政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>嘉兴市人民政府关于完善企业职工基本养老保险制度的实施意见</p>
+                                    <span class="J_bgcolor_e">城镇职工</span><span>养老/政策</span>
+                                    <h6>发布时间：2013-12-30</h6>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#">名词解释</a></li>
+                    <li><a href="#">问题解读</a></li>
+                </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+</div>
+</body>
+</html>

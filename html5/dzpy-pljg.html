@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4.2评论结果</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_header_b_h = $('.J_header_b').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_header_b_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+	        $('#h_money_item').click(function(){
+	            if(hm.css('display') == 'none') {
+	                hf.hide();
+	                hs.hide();
+	                mlayer.show();
+	            	hm.show();
+					$(".J_ComboBox_upArrow").css({ "left": "24%","display":"block"});
+	            }else{
+	                hm.hide();
+	                mlayer.hide();
+	            }
+	        });
+	        
+	        $('#h_sort_item').click(function(){
+	            if(hs.css('display') == 'none') {
+	                hf.hide();
+	                hm.hide();
+	                mlayer.show();
+	            	hs.show();
+					$(".J_ComboBox_upArrow").css({ "left": "74%","display":"block"});
+	            }else{
+	                hs.hide();
+	                mlayer.hide();
+	            }
+	        });
+	        
+	        mlayer.click(function(){
+	            hm.hide();
+	            hs.hide();
+	        	hf.hide();
+	            mlayer.hide();
+					$(".J_ComboBox_upArrow").css({ "display": "none"});
+	        });
+	  	});
+    </script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_s_header J_header_b J_header_b_a">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left"><form><input id="filter-for-listview" data-type="search"></form></h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    	<div role="main" class="J_option J_option_two J_posi_fixed" style="z-index:999;">
+        	<div id="h_money_item"><a>医院</a></div>
+            <div id="h_sort_item"><a>智能</a></div>
+            <div id="popupArea" class="J_popup_unbar">
+            	<div class="J_ComboBox_upArrow" style="display:none;"></div>
+                <ul id="h_money" data-role="listview">
+                    <li>全部医院</li>
+                    <li>三甲医院</li>
+                    <li>三级医院</li>
+                    <li>二级医院</li>
+                    <li>一级医院</li>
+                    <li>社区医院</li>
+                    <li>其他医院</li>
+                </ul>
+                <ul id="h_sort" data-role="listview">
+                    <li>智能排序</li>
+                    <li>综合评分最高</li>
+                    <li>就医环境最好</li>
+                    <li>服务态度最好</li>
+                    <li>医疗水平最高</li>
+                    <li>候诊时间最短</li>
+                    <li>医院级别最高</li>
+                </ul>
+            </div>
+        </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:3.5em;bottom: 0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent" style="margin-top:2.9em;">
+                    <ul data-role="listview" data-input="#filter-for-listview" class="J_listview_one J_listview_four">
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院第一人民医院第一人民医院第一人民医院第一人民医院第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span style="display:none"></span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<!--无三甲用此效果，参照上一条<span style="display:none"></span>--></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            </a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                        <li data-icon="false">
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>第一人民医院<span>三甲</span></h2>
+                            <h3><span class="J_icon_star"><i></i></span><b style="float:right;">235人评价</b></h3>
+                            <p>高新南区</p></a>
+                        </li>
+                    </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+</div>
+</body>
+</html>

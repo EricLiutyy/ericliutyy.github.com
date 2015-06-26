@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.1.1就诊基本信息嘉兴1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">就诊基本信息</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    <div data-role="content" class="J_content">
+    	<div class="ui-grid-solo J_grid_a">
+    		<div class="ui-block-a"><label>就诊日期：</label>2014.10.13至2014.10.12</div>
+            <div class="ui-block-a"><label>就诊医院：</label></div>
+        </div>
+        <div class="ui-grid-a J_grid_a">
+            <div class="ui-block-a"><label>就诊类型：</label>住院</div>
+            <div class="ui-block-b"><label>主治医生：</label>李正</div>
+        </div>
+        <div class="ui-grid-solo J_grid_a">
+            <div class="ui-block-a"><label>诊断结果：</label>血友病</div>
+            <div class="ui-block-a"><label>就诊费用：</label>24565.36（元）
+            	<a href="#" class="ui-btn J_icon_costDetails ui-btn-icon-left" style="float:right;">费用明细</a>
+       		 </div>
+        </div>
+        <div role="main" class="J_grid_pop_a">
+        	<div class="J_ComboBox_upArrow"></div>
+            <div class="ui-grid-solo">
+                 <div class="ui-block-a">就诊费用统计</div>
+            </div>
+            <div class="ui-grid-a">
+            	<div class="ui-block-a ui-btn">列入统筹基数：10159.94</div>
+            	<div class="ui-block-b ui-btn">统筹基金：7487.95</div>
+            	<div class="ui-block-a ui-btn">大病补充：0.00 </div>
+            	<div class="ui-block-b ui-btn">单位补助：0.00</div>
+            	<div class="ui-block-a ui-btn">自费现金：5101.20</div>
+            	<div class="ui-block-b ui-btn">自负现金：546.90</div>
+            	<div class="ui-block-a ui-btn">其他：0.00</div>
+            </div>
+            <div class="ui-grid-a J_grid_b">
+                <div class="ui-block-a">个人现金支付：5648.10</div>
+                <div class="ui-block-b">社保机构支付：9675.77</div>
+            </div>
+            <div class="J_Pbox">
+                <p><b>*</b>统筹基金支付部分=（纳入统筹金额-起付线）*报销比例您本次住院起付线为<b>800</b>元，报销比例为<b>80%</b></p>
+                <p>个人现金支付=自费现金+自负现金</p>
+                <p>社保机构支付=统筹基金+大病补助+单位补助</p>
+            </div>
+        </div>
+    </div>
+    <div data-role="footer" class="J_footer">
+    	<h1 class="ui-icon-carat-r ui-btn-icon-right"><a href="#" class="J_icon_book ui-btn-icon-left">相关知识</a></h1>
+    </div>
+</div>
+</body>
+</html>

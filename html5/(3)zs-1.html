@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/J.healthcare.govern.js"></script><!--自定义js包-->
+<script>
+    $(document).ready(function(){
+        var self = $('.J_listview_five li p'); 
+        self.each(function(){ 
+            var objString = $(this).text(); 
+            $(this).attr("orig" ,objString);
+            var objLength = $(this).text().length; 
+            var num = 38; 
+                if(objLength > num){ 
+                    $(this).attr('title',objString); 
+                    objString = $(this).text(objString.substring(0,num) + '...'); 
+                }
+        });
+    });
+</script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">知识</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <a href="#" target="_parent" class="J_icon_asteriskAdd">Open right new page</a>
+    </div>
+	<div role="main">
+    	<div class="J_search_box">
+            <form class="J_search">
+                 <input type="search" name="search-1" id="search-1" placeholder="搜索" value="">
+            </form>
+        </div>
+        <ul data-role="listview" class="J_knowledge J_listview">
+            <li><a href="#">为您推荐<span style="float:right;"><b>查看更多</b></span></a>
+            </li>
+        </ul>
+        <ul data-role="listview" class="J_listview_two J_listview_five mg_lf05">
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+        </ul>
+        <ul data-role="listview" class="J_listview_two J_listview_five mg_lf05">
+            <li data-icon="false">
+                <a href="#">
+                    <h4>血友病<span>疾病</span></h4>
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#">
+                    <h4>高血压<span>疾病</span></h4>
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                </a>
+            </li>
+        </ul>
+        <div class="J_i_multicolour">
+        	<h4 class="ui-btn ui-shadow-icon J_meta_tag">社保知识</h4>
+        	<ul class="J_classify_iconBox">
+            	<li><a href="#"><i class="J_icon_mi"></i><label>医疗保险</label></a></li>
+                <li><a href="#"><i class="J_icon_ei"></i><label>养老保险</label></a></li>
+                <li><a href="#"><i class="J_icon_ui"></i><label>失业保险</label></a></li>
+                <li><a href="#"><i class="J_icon_ci"></i><label>生育保险</label></a></li>
+                <li><a href="#"><i class="J_icon_eii"></i><label>工伤保险</label></a></li>
+                <li><a href="#"><i class="J_icon_fd"></i><label>医保目录查询</label></a></li>
+            </ul>
+            <h4 class="ui-btn ui-shadow-icon J_meta_tag">医学知识</h4>
+            <ul class="J_classify_iconBox">
+                <li><a href="#"><i class="J_icon_dk"></i><label>疾病知识</label></a></li>
+                <li><a href="#"><i class="J_icon_di"></i><label>药品知识</label></a></li>
+                <li><a href="#"><i class="J_icon_aek"></i><label>辅助检查知识</label></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

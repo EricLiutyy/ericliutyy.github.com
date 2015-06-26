@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.1.1就诊明细-费用明细5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_header_b_h = $('.J_header_b').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_header_b_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+	        $('#h_money_item').click(function(){
+	            if(hm.css('display') == 'none') {
+	                hf.hide();
+	                hs.hide();
+	                mlayer.show();
+	            	hm.show();
+					$('#h_money_item').find('a').addClass('ui-icon-carat-u');
+					$('#h_sort_item').find('a').removeClass('ui-icon-carat-u');
+					$('.J_ComboBox_upArrow').removeClass('ds-none');
+					$(".J_ComboBox_upArrow").css({ "left": "24%"});
+	            }else{
+	                hm.hide();
+	                mlayer.hide();
+					$('#h_money_item').find('a').removeClass('ui-icon-carat-u');
+	            }
+	        });
+	        
+	        $('#h_sort_item').click(function(){
+	            if(hs.css('display') == 'none') {
+	                hf.hide();
+	                hm.hide();
+	                mlayer.show();
+	            	hs.show();
+					$('#h_sort_item').find('a').addClass('ui-icon-carat-u');
+					$('#h_money_item').find('a').removeClass('ui-icon-carat-u');
+					$('.J_ComboBox_upArrow').removeClass('ds-none');
+					$(".J_ComboBox_upArrow").css({ "left": "74%"});
+	            }else{
+	                hs.hide();
+	                mlayer.hide();
+					$('#h_sort_item').find('a').removeClass('ui-icon-carat-u');
+	            }
+	        });
+	        
+	        mlayer.click(function(){
+	            hm.hide();
+	            hs.hide();
+	        	hf.hide();
+	            mlayer.hide();
+					$('#h_sort_item').find('a').removeClass('ui-icon-carat-u');
+					$('#h_money_item').find('a').removeClass('ui-icon-carat-u');
+					$('.J_ComboBox_upArrow').addClass('ds-none');
+					//$(".J_ComboBox_upArrow").css({ "left": "24%"});
+	        });
+	  	});
+    </script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_header_b J_header_b_a">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">就诊记录</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+    	<div role="main" class="J_option J_option_two J_posi_fixed" style="z-index:999;">
+        	<div id="h_money_item"><a>全部</a></div>
+            <div id="h_sort_item"><a>排序</a></div>
+            <div id="popupArea" class="J_popup_unbar">
+            	<div class="J_ComboBox_upArrow ds-none"></div>
+                <ul id="h_money" data-role="listview">
+                    <li>全部</li>
+                    <li>门诊</li>
+                    <li>门诊规定病</li>
+                    <li>住院</li>
+                    <li>药店购药</li>
+                </ul>
+                <ul id="h_sort" data-role="listview">
+                    <li>按时间排序</li>
+                    <li>按就医花费排序</li>
+                </ul>
+            </div>
+        </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:3.5em;bottom: 0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent" style="margin-top:2.2em;">
+                    <ul data-role="listview" data-input="#filter-for-listview" class="J_listview_one">
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊规定病</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">住院</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">药店购药</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊规定病</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊规定病</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">药店购药</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">住院</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img src="style-J/image/text-pic.jpg">
+                            <h2>2014-10-12<span style="float:right;">门诊规定病</span></h2>
+                            <h3>第一人民医院</h3>
+                            <p>就医花费<b>2,546</b>元</p></a>
+                        </li>
+                    </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+</div>
+</body>
+</html>

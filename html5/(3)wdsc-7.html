@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>7.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script>
+  		$(document).ready(function(){
+			var self = $('.J_listview_five li p'); 
+			self.each(function(){ 
+				var objString = $(this).text(); 
+				$(this).attr("orig" ,objString);
+				var objLength = $(this).text().length; 
+				var num = 38; 
+					if(objLength > num){ 
+						$(this).attr('title',objString); 
+						objString = $(this).text(objString.substring(0,num) + '...'); 
+					}
+			});
+	  	});
+    </script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">我的收藏</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+    </div>
+	<div role="main">
+    	<ul data-role="listview" class="J_knowledge J_listview J_myFavorite">
+            <li><a href="#"><i class="J_icon_mi"></i>医院保险<span style="float:right;"><b>查看更多</b></span></a>
+            </li>
+        </ul>
+        <ul data-role="listview" class="J_listview_two J_listview_five mg08">
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+        </ul>
+    	<ul data-role="listview" class="J_knowledge J_listview J_myFavorite J_myFavorite_or">
+            <li><a href="#"><i class="J_icon_dk"></i>疾病知识<span style="float:right;"><b>查看更多</b></span></a>
+            </li>
+        </ul>
+        <ul data-role="listview" class="J_listview_g J_listview_wdsc">
+        	<li>
+            	<a href="#">二尖瓣闭锁不全</a>
+            </li>
+        	<li>
+            	<a href="#">二尖瓣脱垂综合征</a>
+            </li>
+        	<li>
+            	<a href="#">二尖瓣狭窄</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

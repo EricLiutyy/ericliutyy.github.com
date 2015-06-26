@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>9-2.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script>
+  		$(document).ready(function(){
+			var self = $('#two .J_listview_five li p'); 
+			self.each(function(){ 
+				var objString = $(this).text(); 
+				$(this).attr("orig" ,objString);
+				var objLength = $(this).text().length; 
+				var num = 45; 
+					if(objLength > num){ 
+						$(this).attr('title',objString); 
+						objString = $(this).text(objString.substring(0,num) + '...'); 
+					}
+			});
+			
+				var s = $('.J_listview .J_meta_tag span')
+				$(s).bind("click",function(){
+					if($(this).hasClass('J_btn_subscribed')){
+						$(this).removeClass();
+						$(this).addClass('J_btn_subscribe');
+						$(this).html('订阅')
+					}else{
+						$(this).removeClass();
+						$(this).addClass('J_btn_subscribed');
+						$(this).html('已订阅')
+					}
+				});
+			
+	  	});
+    </script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">搜索结果</h1>
+       <!--加搜索-->
+    </div>
+	<div role="main">
+   <ul data-role="listview" class="J_knowledge J_listview">   <li data-icon="false"><a href="#" class="J_meta_tag">当前搜索：脑梗死<span class="J_btn_subscribe">订阅</span></a></li>
+      
+     </ul>  
+      
+        <ul data-role="listview" class="J_listview_two J_listview_five">
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>脑梗死</h4>
+                        	<p>概述：脑梗死(cerebral infarction，CI)是缺血性卒中(is
+chemic stroke)的总称，脑梗死的病状中包括脑血栓和</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>中青年脑梗死</h4>
+                        	<p>概述：中青年脑梗死在卒中人群中所占比例不高，中青年年卒中一般指40岁以下脑卒中患者，中青年卒中一般指</p>
+                        </a>
+                    </li>
+                </ul>
+    </div>
+</div>
+</body>
+</html>

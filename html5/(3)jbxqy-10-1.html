@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>10.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script src="style-J/js/J.healthcare.govern.js"></script><!--自定义js包-->
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_header_b_h = $('.J_header_b').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_header_b_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+	
+	  	});
+    </script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_header_b_a">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">概述</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <!--<a href="#" class="J_icon_asterisk">Open right new page</a>-->
+    </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:2.2em;bottom: 0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent">
+                <ul data-role="listview" class="J_knowledge id_get">
+                    <li><a href="#">概述</a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>脑梗死(cerebral infarction，CI)是缺血性卒中(ischemic stroke)的总称，包括脑血栓形成、腔隙性梗死和脑栓塞等，约占全部脑卒中的70%，是脑血液供应障碍引起脑部病变。
+脑梗死是由于脑组织局部供血动脉血流的突然减少或停止，造成该血管供血区的脑组织缺血、缺氧导致脑组织坏死、软化，并伴有相应部位的临床症状和体征，如偏瘫、失语等神经功能缺失的症候。脑梗死发病24～48h后，脑CT扫描可见相应部位的低密度灶，边界欠清晰，可有一定的占位效应。脑MRI检查能较早期发现脑梗死，表现为加权图像上T1在病灶区呈低信号，T2呈高信号，MRI能发现较小的梗死病灶。</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#">流行病学</a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>我国1986～1990年大规模人群调查显示，脑卒中发病率为109.7/10万～217/10万，患病率为719/10万～745.6/10万，死亡率为116/10万～141.8/10万。男性发病率高于女性，男∶女约为1.3∶1～1.7∶1。
+脑卒中发病率、患病率和死亡率随年龄增加，45岁后均呈明显增加，65岁以上人群增加最明显，75岁以上者发病率是45～54岁组的5～8倍。存活者中50%～70%病人遗留瘫痪、失语等严重残疾，给社会和家庭带来沉重的负担。
+1990年张葆樽等进行的580多万人口全国性流行病学调查显示，重症脑血管病的发病率为115.61/10万，患病率为256.94/10万，死亡率为81.33/10万，我国每年新发生脑卒中病人近150万人，年死亡数近100万人。
+脑梗死病人约占全部脑卒中的70%。</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#">病因</a></li>
+                    <li><a href="#">发病机制</a></li>
+                    <li><a href="#">临床表现</a></li>
+                    <li><a href="#">发病机制</a></li>
+                    <li><a href="#">并发症</a></li>
+                    <li><a href="#">辅助检查</a></li>
+                    <li><a href="#">诊断</a></li>
+                    <li><a href="#">鉴别诊断</a></li>
+                    <li><a href="#">治疗</a></li>
+                    <li><a href="#">预防</a></li>
+                    <li><a href="#">预后</a></li>
+                </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+</div>
+</body>
+</html>

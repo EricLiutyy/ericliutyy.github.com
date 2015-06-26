@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/J.healthcare.govern.js"></script><!--自定义js包-->
+<script>
+    $(document).ready(function(){
+        var self = $('.J_listview_five li p'); 
+        self.each(function(){ 
+            var objString = $(this).text(); 
+            $(this).attr("orig" ,objString);
+            var objLength = $(this).text().length; 
+            var num = 38; 
+                if(objLength > num){ 
+                    $(this).attr('title',objString); 
+                    objString = $(this).text(objString.substring(0,num) + '...'); 
+                }
+        });
+		var ah = ($(document.body).width());
+		$('.WSCSlideWrapper').css('width',ah +'px');
+		$('.WSCSlide_img').css('width',ah +'px');
+/*		$('.WSCSlide').css({
+			'width':ah*3 + 'px'
+			});*/
+    });
+</script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">知识</h1>
+        <a data-rel="back" href="#">Open left new page</a>
+        <a href="(3)wdsc-7.html" target="_parent" class="J_icon_asteriskAdd">Open right new page</a>
+    </div>
+	<div role="main">
+    	<div class="J_search_box">
+        	
+    <div class="WSCSlideWrapper">
+        <div class="WSCSlide WSCSlideTransition">
+            <img class="WSCSlide_img" src="http://img.hb.aicdn.com/bbda8356f70657cb8c37839a2faa5f0ecda236fa1c35d-H0mBk7_fw658" />
+            <img class="WSCSlide_img" src="http://img.hb.aicdn.com/5e16ca9166f43d4a887768180c49a5de972a70323950c-N6oHaP_fw658" />
+            <img class="WSCSlide_img" src="http://img.hb.aicdn.com/ad2632c3bd37831ef8824081f647144d3f8b858b17a7e-ra2NJZ_fw658" />
+            <img class="WSCSlide_img" src="http://img.hb.aicdn.com/2392dfdfb4e3301f9cf63e927de634b72bfc62565bf56-zxFeHY_fw658" />
+            <img class="WSCSlide_img" src="http://img.hb.aicdn.com/170df045402a66f1393cde68c1642d7825e793ffd72d-gVbXRg_fw658" />
+            <div class="WSCSlide_img"></div>
+        </div>
+        <div class="WSCSlideStatus"></div>
+    </div>
+            
+            <form class="J_search">
+                 <input type="search" name="search-1" id="search-1" placeholder="搜索" value="">
+            </form>
+        </div>
+        <ul data-role="listview" class="J_knowledge J_listview">
+            <li><a href="#">为您推荐<span style="float:right;"><b>查看更多</b></span></a>
+            </li>
+        </ul>
+        <ul data-role="listview" class="J_listview_two J_listview_five mg_lf05">
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#">
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                    <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                    <h6>发布时间：2013-12-30</h6>
+                </a>
+            </li>
+        </ul>
+        <ul data-role="listview" class="J_listview_two J_listview_five mg_lf05">
+            <li data-icon="false">
+                <a href="#">
+                    <h4>血友病<span>疾病</span></h4>
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="#">
+                    <h4>高血压<span>疾病</span></h4>
+                    <p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                </a>
+            </li>
+        </ul>
+        <div class="J_i_multicolour">
+        	<h4 class="ui-btn ui-shadow-icon J_meta_tag">社保知识</h4>
+        	<ul class="J_classify_iconBox">
+            	<li><a href="#"><i class="J_icon_mi"></i><label>医疗保险</label></a></li>
+                <li><a href="#"><i class="J_icon_ei"></i><label>养老保险</label></a></li>
+                <li><a href="#"><i class="J_icon_ui"></i><label>失业保险</label></a></li>
+                <li><a href="#"><i class="J_icon_ci"></i><label>生育保险</label></a></li>
+                <li><a href="#"><i class="J_icon_eii"></i><label>工伤保险</label></a></li>
+                <li><a href="#"><i class="J_icon_fd"></i><label>医保目录查询</label></a></li>
+            </ul>
+            <h4 class="ui-btn ui-shadow-icon J_meta_tag">医学知识</h4>
+            <ul class="J_classify_iconBox">
+                <li><a href="#"><i class="J_icon_dk"></i><label>疾病知识</label></a></li>
+                <li><a href="#"><i class="J_icon_di"></i><label>药品知识</label></a></li>
+                <li><a href="#"><i class="J_icon_aek"></i><label>辅助检查知识</label></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+// 基于jQuery的移动端轮播插件，用zepto会有with问题
+// 返回值  轮播对象
+// 参数：
+// WSCSlideTransition    Transition的class名
+// WSCSlideWrapper    轮播的jQuery对象
+// WSCSlide     包裹轮播图片jQuery对象
+// WSCSlide_img   轮播图片列表jQuery对象
+// timerNum     循环时间
+function WSCMobileSlide(arg_obj) {
+    /*
+    参数:
+    el是jQuery选择器
+
+    返回值:
+    matrix.m41是x值 number
+    matrix.m42是y值 number
+    参考链接 http://stackoverflow.com/questions/5968227/get-the-value-of-webkit-transform-of-an-element-with-jquery
+    参考链接 https://developer.apple.com/library/safari/documentation/AudioVideo/Reference/WebKitCSSMatrixClassReference/WebKitCSSMatrix/WebKitCSSMatrix.html#//apple_ref/javascript/instp/WebKitCSSMatrix/m41
+    */
+    function getTransform(el) {
+        var style = window.getComputedStyle($(el).get(0));
+        var matrix = new WebKitCSSMatrix(style.webkitTransform);
+        return matrix;
+    }
+
+    function slideAnimate(x, y) {
+        if (Math.abs(x) >= y) {
+            // $(".WSCSlide").removeClass("WSCSlideTransition");
+            $(".WSCSlide").css("-webkit-transform", "translate3d(0,0,0)");
+        } else {
+            // $(".WSCSlide").addClass("WSCSlideTransition");
+            $(".WSCSlide").css("-webkit-transform", "translate3d(" + x + "px,0,0)");
+        }
+    }
+
+    function getSlideTimer(timeNum) {
+        if(typeof(timeNum) == "undefined"){
+            timeNum = 3000;
+        }
+        var slideTimer = setInterval(function() {
+            var x = getTransform(".WSCSlide").m41;
+            x = x - ImgWidth;
+            slideAnimate(x, endPosition);
+
+        }, timeNum);
+        return slideTimer;
+    }
+
+
+    function touchDragMe($element) {
+        var gundongX = 0;
+        var gundongY = 0;
+        var d = document;
+        var g = 'getElementById';
+        var moveEle = $element;
+        var stx = sty = etx = ety = curX = curY = 0;
+
+        moveEle.on("touchstart", function(event) { //touchstart
+            $element.removeClass(transitionName);
+            clearInterval(slideTimer);
+            var event = event.originalEvent;
+            gundongX = 0;
+            gundongY = 0;
+
+
+            // 元素当前位置
+            etx = parseInt(getT3d(moveEle, "x"));
+            ety = parseInt(getT3d(moveEle, "y"));
+
+            // 手指位置
+            stx = event.touches[0].pageX;
+            sty = event.touches[0].pageY;
+        });
+
+        moveEle.on("touchmove", function(event) {
+            var event = event.originalEvent;
+            // 防止拖动页面
+            event.preventDefault();
+
+            // 手指位置 减去 元素当前位置 就是 要移动的距离
+            gundongX = event.touches[0].pageX - stx;
+            gundongY = event.touches[0].pageY - sty;
+
+            // 目标位置 就是 要移动的距离 加上 元素当前位置
+            curX = gundongX + etx;
+            curY = gundongY + ety;
+
+            // 自由移动
+            // moveEle.style.webkitTransform = 'translate3d(' + (curX) + 'px, ' + (curY) + 'px,0px)';
+            // 只能移动Y轴方向
+            // var realMoveEle = moveEle[0];
+            moveEle[0].style.webkitTransform = 'translate3d(' + (curX) + 'px, ' + 0 + 'px,0px)';
+
+
+        });
+        moveEle.on("touchend", function(event) {
+            // 手指接触屏幕的位置
+            var oriX = etx;
+            var oriY = ety;
+
+            // 手指离开屏幕的位置
+            etx = curX;
+            ety = curY;
+
+            var slidePosition = 0;
+            for (var i = 0; i < ImgWidth_arr_length - 1; i++) {
+                if (Math.abs(etx) > ImgWidth_arr[i]) {
+
+                    if (oriX > etx) {
+                        // 左滑
+                        slidePosition = -ImgWidth_arr[i + 1];
+                    } else {
+                        // 右滑
+                        slidePosition = -ImgWidth_arr[i];
+                    }
+                }
+
+            }
+            $element.addClass(transitionName);
+            slideAnimate(slidePosition, endPosition);
+            slideTimer = getSlideTimer(timerNum);
+        });
+
+        function getT3d(elem, ename) {
+            var elem = elem[0];
+            var str1 = elem.style.webkitTransform;
+            if (str1 == "") return "0";
+            str1 = str1.replace("translate3d(", "");
+            str1 = str1.replace(")", "");
+            var carr = str1.split(",");
+
+            if (ename == "x") return carr[0];
+            else if (ename == "y") return carr[1];
+            else if (ename == "z") return carr[2];
+            else return "";
+        }
+    }
+
+
+    var transitionName = arg_obj["WSCSlideTransition"] || "WSCSlideTransition";
+    var $WSCSlideWrapper = arg_obj["WSCSlideWrapper"] || $(".WSCSlideWrapper");
+    var $WSCSlide = arg_obj["WSCSlide"] || $(".WSCSlide");
+    var $WSCSlide_img = arg_obj["WSCSlide_img"] || $(".WSCSlide_img");
+    var timerNum = arg_obj["timerNum"] || 3000;
+
+    $WSCSlide_img.width($WSCSlideWrapper.width());
+    $WSCSlide_img.height($WSCSlideWrapper.height());
+
+    var ImgWidth_arr_length = $WSCSlide_img.length;
+	//var ImgWidth = $WSCSlide_img.width();
+    var ImgWidth = $(document.body).width() + 16;
+
+    $WSCSlide.width(ImgWidth * ImgWidth_arr_length);
+
+    var WSCSlideWidth = $WSCSlide.width();
+    // 轮播图终止位置
+    var endPosition = WSCSlideWidth - ImgWidth;
+
+    var ImgWidth_arr = [];
+    for (var i = 0; i < ImgWidth_arr_length; i++) {
+        ImgWidth_arr.push(i * ImgWidth);
+    }
+    // console.log(ImgWidth_arr);
+
+    var slideTimer = getSlideTimer(timerNum);
+
+    touchDragMe($WSCSlide, slideTimer);
+
+    return slideTimer;
+}
+WSCMobileSlide({
+    "WSCSlideTransition": "WSCSlideTransition",
+    "WSCSlideWrapper": $(".WSCSlideWrapper"),
+    "WSCSlide": $(".WSCSlide"),
+    "WSCSlide_img": $(".WSCSlide_img"),
+    "timerNum": 3000
+});
+
+</script>
+</body>
+</html>

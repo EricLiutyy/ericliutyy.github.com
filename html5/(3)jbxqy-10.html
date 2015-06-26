@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>10.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script src="style-J/js/J.healthcare.govern.js"></script><!--自定义js包-->
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_header_b_h = $('.J_header_b').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_header_b_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+
+	  	});
+    </script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_header_b_a">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">脑梗死</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <a href="#" class="J_icon_asterisk">Open right new page</a>
+    </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:2.2em;bottom: 0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent">
+                <ul data-role="listview" class="J_knowledge J_knowledge_olin">
+                    <li><a href="#"><i></i>概述<b style="float:right;">详细</b></a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>脑梗死(cerebral infarction，CI)是缺血性卒中(ischemic stroke)的总称，包括脑血栓形成、腔隙性梗死和脑栓塞等，约占全部脑卒中的70%，是脑血液供应障碍引起脑部病变。<br/>脑梗死是由于脑组织局部供血动脉血流的突然减少或停止，造成该血管供血区的脑组织缺血、缺氧导致脑组织坏死、软化，并伴有相应部位的临床症状和体征，如偏瘫、失语等神经功能缺失的症候...</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#"><i></i>相关药品<b style="float:right;">详细</b></a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>华法林<br/>肝素<br/>阿司匹林<br/>地塞米松<br/>氢化可的松 </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#"><i></i>相关检查<b style="float:right;">详细</b></a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>脑CT扫描<br/>脑MRI检查<br/>经颅超声多普勒技术</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <li><a href="#"><i></i>康复保健<b style="float:right;">详细</b></a></li>
+                    <div class="J_fordetailson_box">
+                    	<ul data-role="listview" class="J_listview_two J_listview_five">
+                            <li data-icon="false">
+                                <a href="#">
+                                    <p>饮食：
+(1)脑梗塞的病人要经常饮水，尤其在清晨和晚间。
+(2)脑梗塞要采用低盐饮食，每日食盐3克 。 
+(3)适量增加蛋白质。
+(4)限制精制糖和含糖类的甜食的摄入。
+(5)控制总热量。
+(6)限制脂肪摄入量。</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+</div>
+</body>
+</html>

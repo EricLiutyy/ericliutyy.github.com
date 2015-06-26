@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/J.healthcare.govern.js"></script><!--自定义js包-->
+    <script src="style-J/js/jquery.cookie.js"></script><!--cookie包-->
+<script>
+$(function(){
+	$(".J_zoomTabsBar").css({
+		'width':$(document.body).width() + 'px'
+	});	//导航的宽度
+	$(".J_zoomTabsBar li").css({
+		'width':($('.J_zoomTabsBar').width()/5) + 'px'
+	});	//单个按钮的宽度
+	$(".J_zoomTabsBar ul").css({
+		'width':$(".J_zoomTabsBar li").width() * $(".J_zoomTabsBar li").length + 'px'
+	});//可滚动的宽度
+	
+	var NoActive = $('.onActive').index();
+	if(NoActive >= 5 && NoActive < 10){
+		$(".J_zoomTabsBar ul").animate({ 
+			left: - ($(document.body).width()) + 'px'
+		  }, 1000 );
+	}else if(NoActive >= 10){
+		$(".J_zoomTabsBar ul").animate({ 
+			left: - ($(document.body).width()*2) + 'px'
+		  }, 1000 );
+	}//初始化label的位置
+	
+	var index = 0;
+	var tleft = 0;
+	$('.J_zoomTabsBar li').bind("click",function(){
+		$(this).addClass('onActive');
+		$(this).siblings().removeClass('onActive');
+		$.cookie("SelectedIndex",$(this).index());//记录当前被选中的label
+		$.cookie("zoomTabUL",$(this).parent().css('left'))//记录当前选中label的位置
+	});//点击事件
+	if($.cookie("SelectedIndex")){
+		index = $.cookie("SelectedIndex");
+		$('.J_zoomTabsBar li').each(function(){
+			if($(this).index() == index){
+				$(this).addClass('onActive');
+				$(this).siblings().removeClass('onActive');
+			}
+		 });
+	}
+	
+	var jleft = 0, jright;
+	var originalleft = $(".J_zoomTabsBar ul").offset().left;
+	var maxDrag = $(".J_zoomTabsBar ul").width() - $(".J_zoomTabsBar").width();
+	var smalldd = $(".J_zoomTabsBar").width()/2;
+	//s 每次滑动的值
+	//m 锁定可滑动区域最大值
+	
+	$(".J_zoomTabsBar").bind("swipeleft",function(){
+	    jleft = $(".J_zoomTabsBar ul").offset().left - smalldd;
+		$(".J_zoomTabsBar ul").animate({ 
+			left: ((originalleft - jleft) >= maxDrag ? originalleft - maxDrag :  jleft) + 'px'
+		  }, 1000 );
+		  //向左
+    });
+	
+	$(".J_zoomTabsBar").bind("swiperight",function(){
+	    jright = $(".J_zoomTabsBar ul").offset().left + smalldd;
+		$(".J_zoomTabsBar ul").animate({ 
+			left: ((jright - originalleft ) >= 50 ? originalleft + 0 :  jright) + 'px'
+		  }, 1000 );
+		  //向右
+    });
+	
+});
+</script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_s_header">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left"><form class="J_search_icon_D"><input id="filter-for-listview" data-type="search" placeholder="请输入名称" value=""></form></h1>
+        <a data-rel="back" href="#">Open left new page</a>
+    </div>
+	<div role="main">
+            <div class="J_zoomTabsBar">
+            	<ul>
+                	<li><a href="#">社保知识</a></li>
+                	<li><a href="#">疾病知识</a></li>
+                	<li><a href="(3)zs-1-0.html">药品知识</a></li>
+                	<li><a href="#">手术知识</a></li>
+                	<li><a href="#">检查知识</a></li>
+                    <li><a href="#">医保知识</a></li>
+                    <li><a href="#">养老知识</a></li>
+                    <li><a href="(3)zs-1-0.html">生育知识</a></li>
+                    <li><a href="(3)zs-1-0.html">工伤知识</a></li>
+                    <li><a href="(3)zs-1-0.html">失业知识</a></li>
+                	<li class="onActive"><a href="#">第三屏</a></li>
+                    <li><a href="#">医保知识</a></li>
+                    <li><a href="#">养老知识</a></li>
+                </ul>
+            </div>
+        <div class="J_zoomText_box">
+        	<h4><i class="J_icon_zoomblove"></i>热门搜索</h4>
+            <div class="J_zoomText_grid">
+            	<div><a href="#">缴费</a></div>
+            	<div><a href="#">报销</a></div>
+            	<div><a href="#">限额</a></div>
+            	<div><a href="(3)zs-1-0.html">个人账户</a></div>
+            	<div><a href="#">未成年人</a></div>
+            	<div><a href="#">新生儿</a></div>
+            	<div><a href="#">退休</a></div>
+            	<div><a href="#">生育</a></div>
+            </div>
+        </div>    
+    </div>
+</div>
+</body>
+</html>

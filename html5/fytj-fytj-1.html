@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.2费用统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var wh = $(window).height();
+	var ww = $(window).width();
+	var poph = $('#popup_calendar').height();
+	
+	$('.J_icon_fyfx').bind("click",function(){
+		$('#popup_calendar-popup').css({
+			'bottom':'0',
+			'top':'auto'
+		});
+		$('.J_popup_feiyongtime').css({
+			'width': ww - 30 + 'px'
+		});
+	});
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_header_b">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">费用分析</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <a href="#popup_calendar" data-rel="popup" data-transition="pop" data-position-to="window" class="J_icon_fyfx">Open right new page</a>
+    </div>
+    <div role="main">
+        <div data-role="tabs" id="tabs">
+          <div data-role="navbar" data-grid="b" class="J_navbar_a">
+            <ul>
+              <li><a href="#one" data-ajax="false" class="ui-btn-foremost">支付类型</a></li>
+              <li><a href="#two" data-ajax="false" class="ui-btn-active">费用类型</a></li>
+              <li><a href="#three" data-ajax="false" class="ui-btn-last">就诊类型</a></li>
+            </ul>
+          </div>
+          <div id="one">
+            <h3 class="J_flagstaff_kang"><a>今年共花费<b>12,545.00</b>元</a></h3>
+            <div class="J_Dashboard">
+            这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard这里是个Dashboard
+            </div>
+            <div data-role="navbar" data-grid="b" class="J_navbar_b">
+                <ul>
+                    <li><a href="#" data-icon="grid">个人支付</a></li>
+                    <li><a href="#" data-icon="shop">社保支付</a></li>
+                    <li><a href="#" data-icon="calendar">补充/大病</a></li>
+                </ul>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">3,215.00</div>
+                    <div class="ui-block-b">7,215.00</div>
+                    <div class="ui-block-c">4,215.00</div>
+                </div>
+            </div>
+          </div>
+          <div id="two">
+            <h3 class="J_flagstaff_kang"><a>今年共花费<b>31,975.00</b>元</a></h3>
+            <div class="J_Dashboard">
+            这里是个Dashboard
+            </div>
+            <div data-role="navbar" data-grid="c" class="J_navbar_b">
+                <ul>
+                    <li><a href="#" data-icon="navigation">药物费用</a></li>
+                    <li><a href="#" data-icon="tag">诊疗费用</a></li>
+                    <li><a href="#" data-icon="video">材料费用</a></li>
+                    <li><a href="#" data-icon="cloud">其他费用</a></li>
+                </ul>
+                <div class="ui-grid-c">
+                    <div class="ui-block-a">3,215.00</div>
+                    <div class="ui-block-b">7,215.00</div>
+                    <div class="ui-block-c">4,215.00</div>
+                    <div class="ui-block-d">215.00</div>
+                </div>
+            </div>
+          </div>
+          <div id="three">
+            <h3 class="J_flagstaff_kang"><a>今年共花费<b>54,456.00</b>元</a></h3>
+            <div class="J_Dashboard">
+            这里是个Dashboard
+            </div>
+            <div data-role="navbar" data-grid="c" class="J_navbar_b">
+                <ul>
+                    <li><a href="#" data-icon="camera">门诊</a></li>
+                    <li><a href="#" data-icon="audio">门诊规定病</a></li>
+                    <li><a href="#" data-icon="clock">住院</a></li>
+                    <li><a href="#" data-icon="lock">药店购物</a></li>
+                </ul>
+                <div class="ui-grid-c">
+                    <div class="ui-block-a">3,215.00</div>
+                    <div class="ui-block-b">7,215.00</div>
+                    <div class="ui-block-c">4,215.00</div>
+                    <div class="ui-block-d">215.00</div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div data-role="popup" id="popup_calendar" data-overlay-theme="b" data-corners="false" class="J_popup_feiyongtime">
+    	<ul data-role="listview" data-icon="false" class="J_popup_listview">
+        	<li><a href="#">2012</a></li>
+        	<li><a href="#">2013</a></li>
+        	<li><a href="#">2014</a></li>
+        </ul>
+        <button><a href="#" data-rel="back">取消</a></button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3.png</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_s_header_h = $('.J_s_header').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_s_header_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+			$('#two').hide();
+			$('.oneID').click(function(){
+				$('#one').show();
+				$('#two').hide();
+			});
+			$('.twoID').click(function(){
+				$('#two').show();
+				$('#one').hide();
+			})
+			
+			var self = $('#two .J_listview_five li p'); 
+			self.each(function(){ 
+				var objString = $(this).text(); 
+				$(this).attr("orig" ,objString);
+				var objLength = $(this).text().length; 
+				var num = 45; 
+					if(objLength > num){ 
+						$(this).attr('title',objString); 
+						objString = $(this).text(objString.substring(0,num) + '...'); 
+					}
+			});
+	  	});
+    </script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">为您推荐</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <a href="dzpy-yyxq-2.html" target="_parent" class="J_icon_recommendedSetting">Open right new page</a>
+    </div>
+	<div role="main">
+        <div data-role="navbar" data-grid="a" class="J_navbar_a J_posi_fixed" style="z-index:1000;">
+            <ul>
+              <li><a href="#" data-ajax="false" class="oneID ui-btn-foremost ui-btn-active">社保知识</a></li>
+              <li><a href="#" data-ajax="false" class="twoID ui-btn-last">医学知识</a></li>
+            </ul>
+        </div>
+        <div id="scrollWrapper" class="scrollWrapper" style="top:7em;bottom:0em;">
+            <div id="ff-content" class="overhidden">
+                <div id="pulldown" class="pulldown">
+                    <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+                </div>
+              <div id="mainContent" style="top:0;bottom:0;">
+              <div id="one">
+              	<ul data-role="listview" class="J_listview_two J_listview_five">
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                            <span class="J_bgcolor_a">特殊病</span><span class="J_bgcolor_b">门诊</span><span class="J_bgcolor_c">急诊</span><span class="J_bgcolor_d">报销规定</span><span class="J_bgcolor_e">城镇职工</span><span>医保/政策</span>
+                            <h6>发布时间：2013-12-30</h6>
+                        </a>
+                    </li>
+                </ul>    
+              </div>   
+              <div id="two">
+              	<ul data-role="listview" class="J_listview_two J_listview_five">
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>血友病<span>疾病</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>高血压<span>疾病</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>二甲双胍<span>药品</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>流行性感冒<span>疾病</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>轮状病毒性肠炎<span>疾病</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>血友病<span>疾病</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>血友病<span>疾病</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                	<li data-icon="false">
+                    	<a href="#">
+                        	<h4>人凝血因子Ⅶ<span>药品</span></h4>
+                        	<p>关于门（急）诊治疗特殊（规定）病种报销规定就诊记录相关医保政策</p>
+                        </a>
+                    </li>
+                </ul>   
+              </div>       
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

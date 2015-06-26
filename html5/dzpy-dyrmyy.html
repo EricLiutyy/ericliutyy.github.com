@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4.1.3第一人民医院</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+	/**
+	打分事件
+	选择的分数被记录在position里,由1-5个等级，分别记录为5个自然数。
+	**/
+	var position;//这里的值是得到 综合评分 的分数1=1分...5=5分
+	var setting;//这里的值是得到 就医环境 的分数1笑脸=非常不满意，2笑脸=不满意，3笑脸=一般，4笑脸=比较满意，5笑脸=非常满意
+	var level;//这里的值是得到 医疗水平 的分数 同上
+	var attitude;//这里的值是得到 服务态度 的分数 同上
+	var time;//这里的值是得到 候诊时间 的分数 同上
+	
+	$('.star i').bind("mouseenter",mouseenterFunc);
+	$('.star i').bind("mouseleave",mouseleaveFunc);
+	
+	function mouseenterFunc(){
+		$('.star i').bind("mouseleave",mouseleaveFunc);
+		$('.star i').removeClass("active-star");//鼠标mouseenter检测是否有
+		
+		$(this).addClass('active-star');//mouseenter添加
+		var index = $(".star i").index($(this)[0]);//便利i的序列值
+		if(index == 0){
+			$(this).removeClass("active-star");
+		}
+		$('.s_result').html($(this).attr('title'));
+	}
+	function mouseleaveFunc(){
+		$(this).removeClass('active-star');
+		$('.s_result').html('请打分');
+		if(position){
+			$($('.star i')[position]).addClass('active-star');
+			$('.s_result').html($($('.star i')[position]).attr('title'));
+		}
+	}
+	
+	$('.star i').bind("click",function(){
+		$('.star i').unbind("mouseleave");
+		$(this).addClass('active-star');
+		$('.s_result').html($(this).attr('title'));
+		
+		position = $(".star i").index($(this)[0]);//获得当前i的序列值
+	});
+	
+	
+	$('.star_a i').bind("mouseenter",enterFunc);
+	$('.star_a i').bind("mouseleave",leaveFunc);
+	function enterFunc(){
+		$('.star_a i').bind("mouseleave",leaveFunc);
+		$('.star_a i').removeClass("smileyFace");//鼠标mouseenter检测是否有
+		
+		$(this).addClass('smileyFace');//mouseenter添加
+		var index = $(".star_a i").index($(this)[0]);//便利i的序列值
+		if(index == 0){
+			$(this).removeClass("smileyFace");
+		}
+		$('.s_a').html($(this).attr('title'));
+	}
+	function leaveFunc(){
+		$(this).removeClass('smileyFace');
+		$('.s_a').html('请评价');
+		if(setting){
+			$($('.star_a i')[setting]).addClass('smileyFace');
+			$('.s_a').html($($('.star_a i')[setting]).attr('title'));
+		}
+	}
+	
+	$('.star_a i').bind("click",function(){
+		$('.star_a i').unbind("mouseleave",leaveFunc);
+		$(this).addClass('smileyFace');
+		$('.s_a').html($(this).attr('title'));
+		
+		setting = $(".star_a i").index($(this)[0]);//获得当前i的序列值
+	});
+	
+	$('.star_b i').bind("mouseenter",b_enterFunc);
+	$('.star_b i').bind("mouseleave",b_leaveFunc);
+	function b_enterFunc(){
+		$('.star_b i').bind("mouseleave",b_leaveFunc);
+		$('.star_b i').removeClass("smileyFace");//鼠标mouseenter检测是否有
+		
+		$(this).addClass('smileyFace');//mouseenter添加
+		var index = $(".star_b i").index($(this)[0]);//便利i的序列值
+		if(index == 0){
+			$(this).removeClass("smileyFace");
+		}
+		$('.s_b').html($(this).attr('title'));
+	}
+	function b_leaveFunc(){
+		$(this).removeClass('smileyFace');
+		$('.s_b').html('请评价');
+		if(level){
+			$($('.star_b i')[level]).addClass('smileyFace');
+			$('.s_b').html($($('.star_b i')[level]).attr('title'));
+		}
+	}
+	
+	$('.star_b i').bind("click",function(){
+		$('.star_b i').unbind("mouseleave",b_leaveFunc);
+		$(this).addClass('smileyFace');
+		$('.s_b').html($(this).attr('title'));
+		
+		level = $(".star_b i").index($(this)[0]);//获得当前i的序列值
+	});
+	
+	$('.star_c i').bind("mouseenter",c_enterFunc);
+	$('.star_c i').bind("mouseleave",c_leaveFunc);
+	function c_enterFunc(){
+		$('.star_c i').bind("mouseleave",c_leaveFunc);
+		$('.star_c i').removeClass("smileyFace");//鼠标mouseenter检测是否有
+		
+		$(this).addClass('smileyFace');//mouseenter添加
+		var index = $(".star_c i").index($(this)[0]);//便利i的序列值
+		if(index == 0){
+			$(this).removeClass("smileyFace");
+		}
+		$('.s_c').html($(this).attr('title'));
+	}
+	function c_leaveFunc(){
+		$(this).removeClass('smileyFace');
+		$('.s_c').html('请评价');
+		if(attitude){
+			$($('.star_c i')[attitude]).addClass('smileyFace');
+			$('.s_c').html($($('.star_c i')[attitude]).attr('title'));
+		}
+	}
+	
+	$('.star_c i').bind("click",function(){
+		$('.star_c i').unbind("mouseleave",c_leaveFunc);
+		$(this).addClass('smileyFace');
+		$('.s_c').html($(this).attr('title'));
+		
+		attitude = $(".star_c i").index($(this)[0]);//获得当前i的序列值
+	});
+	
+	$('.star_d i').bind("mouseenter",d_enterFunc);
+	$('.star_d i').bind("mouseleave",d_leaveFunc);
+	function d_enterFunc(){
+		$('.star_d i').bind("mouseleave",d_leaveFunc);
+		$('.star_d i').removeClass("smileyFace");//鼠标mouseenter检测是否有
+		
+		$(this).addClass('smileyFace');//mouseenter添加
+		var index = $(".star_d i").index($(this)[0]);//便利i的序列值
+		if(index == 0){
+			$(this).removeClass("smileyFace");
+		}
+		$('.s_d').html($(this).attr('title'));
+	}
+	function d_leaveFunc(){
+		$(this).removeClass('smileyFace');
+		$('.s_d').html('请评价');
+		if(time){
+			$($('.star_d i')[time]).addClass('smileyFace');
+			$('.s_d').html($($('.star_d i')[time]).attr('title'));
+		}
+	}
+	
+	$('.star_d i').bind("click",function(){
+		$('.star_d i').unbind("mouseleave",d_leaveFunc);
+		$(this).addClass('smileyFace');
+		$('.s_d').html($(this).attr('title'));
+		
+		time = $(".star_d i").index($(this)[0]);//获得当前i的序列值
+	});
+})
+</script>
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header" data-position="fixed" class="J_header_b ui-fixed-hidden">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">第一人民医院</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <!--<a href="dzpy-yyxq-2.html" target="_parent">Open right new page</a>-->
+    </div>
+    <div role="main">
+    	<div class="ui-grid-solo J_grid_none J_grid_none_a">
+        	<div class="ui-block-a">就诊日期：2014-10-12</div>
+        	<div class="ui-block-a">诊断结果：血友病</div>
+        	<div class="ui-block-a">就诊费用：156,324.12</div>
+        </div>
+        <ul data-role="listview" class="J_listview J_listview_three">
+        	<li>
+            	<h2>综合评分
+                    <span class="star">
+                    	<i style="display:none"></i>
+                        <i class="square-1" title="1分"></i>
+                        <i class="square-2" title="2分"></i>
+                        <i class="square-3" title="3分"></i>
+                        <i class="square-4" title="4分"></i>
+                        <i class="square-5" title="5分"></i>
+                    </span>
+                    <b class="s_result">0分</b>
+                </h2>
+            </li>
+            <li>
+            	<h3>就医环境
+                    <span class="star_a">
+                    	<i style="display:none"></i>
+                        <i class="square-1" title="非常不满意"></i>
+                        <i class="square-2" title="不满意"></i>
+                        <i class="square-3 smileyFace" title="一般"></i>
+                        <i class="square-4" title="比较满意"></i>
+                        <i class="square-5" title="非常满意"></i>
+                    </span>
+                    <b class="s_a">一般</b>
+                </h3>
+            	<h3>医疗水平
+                	<span class="star_b">
+                    	<i style="display:none"></i>
+                        <i class="square-1" title="非常不满意"></i>
+                        <i class="square-2" title="不满意"></i>
+                        <i class="square-3 smileyFace" title="一般"></i>
+                        <i class="square-4" title="比较满意"></i>
+                        <i class="square-5" title="非常满意"></i>
+                    </span>
+                    <b class="s_b">一般</b>
+                </h3>
+            	<h3>服务态度
+                	<span class="star_c">
+                    	<i style="display:none"></i>
+                        <i class="square-1" title="非常不满意"></i>
+                        <i class="square-2" title="不满意"></i>
+                        <i class="square-3 smileyFace" title="一般"></i>
+                        <i class="square-4" title="比较满意"></i>
+                        <i class="square-5" title="非常满意"></i>
+                    </span>
+                    <b class="s_c">一般</b>
+                </h3>
+            	<h3>候诊时间
+                	<span class="star_d">
+                    	<i style="display:none"></i>
+                        <i class="square-1" title="非常不满意"></i>
+                        <i class="square-2" title="不满意"></i>
+                        <i class="square-3 smileyFace" title="一般"></i>
+                        <i class="square-4" title="比较满意"></i>
+                        <i class="square-5" title="非常满意"></i>
+                    </span>
+                    <b class="s_d">一般</b>
+                </h3>
+                <form>
+                <textarea cols="80" rows="8" name="textarea-12" id="textarea-12"></textarea>
+                </form>
+            </li>
+        </ul>
+            	<div class="J_pdem-1"><button class="J_btn_blove">提交</button></div>
+    </div>
+</div>
+</body>
+</html>

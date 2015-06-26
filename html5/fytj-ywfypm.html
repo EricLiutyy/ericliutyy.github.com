@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1.2药物费用排名</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-J/css/jquery.mobile-1.4.2.min.css"/>
+    <link rel="stylesheet" href="style-J/css/custom-J-css.css" />
+    <link rel="stylesheet" href="style-J/css/scroller.css" />
+    <script src="style-J/js/jquery-2.1.4.min.js"></script>
+    <script src="style-J/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="style-J/js/iscroll-ff.js"></script>
+    <script src="style-J/js/iscrollAssist.js"></script>
+    <script>
+        
+        var myScroll;	
+  		var cPage = 1;    //当前页码，从后台传过来
+  		var loading = false;    //控制是否是在加载，防止二次加载
+  		var totalpage = 10;    //总页数，从后台传过来
+  		
+  		var hm;
+  		var hs;
+  		var hf;
+  		var mlayer;
+  		$(document).ready(function(){
+  		    hm = $('#h_money');
+  		    hs = $('#h_sort');
+  		    hf = $('#h_filter');
+  		    mlayer = $("#masklayer");
+  		    
+  		    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    	var pulldownAction = function(){
+	            cPage = 1;
+	            $('#pullup').removeClass('nomore');
+	            window.location.reload();
+	        };
+	        var pullupAction = function(){
+	            if(loading == false) {
+	                cPage++;
+	                getCommentList(cPage);
+	            }
+	        };
+	        myScroll = iscrollAssist.newVerScrollForPull($('#scrollWrapper'),pulldownAction,pullupAction);
+	        
+	        myScroll.refresh();
+        	if(totalpage <= cPage) {
+	    		$(".pullup-label").text('没有更多信息了.');
+	    		$("#pullup").addClass('nomore');
+	    		if(cPage == 1) {
+	               if($(".pullup").hasClass("nomore")) {
+	                 $(".pullup").hide();
+	                }
+	            }   
+	    	}
+	        
+			var body_h = $(document.body).height();
+			var J_option_h = $('.J_option').height();
+			var J_s_header_h = $('.J_s_header').height();
+			$('.J_option .J_popup_unbar .ui-listview').css({
+				"max-height": body_h - J_option_h - J_s_header_h +"px",
+				//'overflow-y':'scroll'
+			});//新添计算listview高度
+			
+	        $('#h_money_item').click(function(){
+	            if(hm.css('display') == 'none') {
+	                hf.hide();
+	                hs.hide();
+	                mlayer.show();
+	            	hm.show();
+					$(".J_ComboBox_upArrow").css({ "left": "16%"});
+	            }else{
+	                hm.hide();
+	                mlayer.hide();
+	            }
+	        });
+	        
+	        $('#h_sort_item').click(function(){
+	            if(hs.css('display') == 'none') {
+	                hf.hide();
+	                hm.hide();
+	                mlayer.show();
+	            	hs.show();
+					$(".J_ComboBox_upArrow").css({ "left": "49%"});
+	            }else{
+	                hs.hide();
+	                mlayer.hide();
+	            }
+	        });
+	        
+	        $('#h_filter_item').click(function(){
+	            if(hf.css('display') == 'none') {
+	                hm.hide();
+	                hs.hide();
+	                mlayer.show();
+	            	hf.show();
+					$(".J_ComboBox_upArrow").css({ "left": "82%"});
+	            }else{
+	                hf.hide();
+	                mlayer.hide();
+	            }
+	        });
+			
+	        $('.J_icon_calendar').click(function(){
+	            hm.hide();
+	            hs.hide();
+	        	hf.hide();
+	            mlayer.hide();
+					$(".J_ComboBox_upArrow").css({ "left": "16%"});
+				});
+			
+	        mlayer.click(function(){
+	            hm.hide();
+	            hs.hide();
+	        	hf.hide();
+	            mlayer.hide();
+					$(".J_ComboBox_upArrow").css({ "left": "16%"});
+	        });
+	  	});
+
+//引入日期控件-
+$(function () {   
+var opt1 = {
+	animate: "",
+	display: "modal",//显示方式
+	lang: "",
+	mode: "scroller",//日期选择模式
+	preset: "date",
+	theme: "default"//皮肤
+	
+	}
+    $('.demo-test-date').scroller('destroy').scroller(opt1);
+});
+//日期控件-end
+    </script>
+<!--    日期控件js&css-->
+    <script src="style-J/js/mobiscroll.core.js"></script>
+    <script src="style-J/js/mobiscroll.scroller.js" type="text/javascript"></script>
+    <script src="style-J/js/mobiscroll.datetime.js" type="text/javascript"></script>
+    <script src="style-J/js/mobiscroll.select.js" type="text/javascript"></script>
+    <link href="style-J/css/mobiscroll.icons.css" rel="stylesheet" type="text/css" />
+    <link href="style-J/css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+    <link href="style-J/css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+    
+<!-- end  日期控件js&css-->
+</head>
+
+<body>
+<div data-role="page">
+	<div data-role="header">
+    	<h1 class="ui-icon-carat-l ui-btn-icon-left">药物费用排名</h1>
+        <a href="dzpy-dzpy.html" target="_parent">Open left new page</a>
+        <!--<a href="#popup_calendar" data-rel="popup" data-transition="pop" data-position-to="window" class="J_icon_calendar">-->
+        <a class="J_icon_calendar demo-test-date demo-test-datetime demo-test-time demo-test-credit" id="test">Open right new page</a>
+    </div>
+    	<div role="main" class="J_option J_posi_fixed" style="z-index:1000;">
+        	<div id="h_money_item"><a>药物费用</a></div>
+            <div id="h_sort_item"><a>排序</a></div>
+            <div id="h_filter_item"><a>报销类型</a></div>
+            <div id="popupArea" class="J_popup_unbar">
+            	<div class="J_ComboBox_upArrow"></div>
+                <ul id="h_money" data-role="listview">
+                    <li>全部</li>
+                    <li>中草药</li>
+                    <li>中成药</li>
+                    <li>西药</li>
+                </ul>
+                <ul id="h_sort" data-role="listview">
+                	<li>总金额</li>
+                	<li>报销金额</li>
+                	<li>自付金额</li>
+                </ul>
+                <ul id="h_filter" class="J_h_mold" data-role="listview">
+                    <li>全部</li>
+                    <li>自费</li>
+                    <li>全部报销</li>
+                    <li>部分报销</li>
+                </ul>
+            </div>
+        </div>
+    <div id="scrollWrapper" class="scrollWrapper" style="top:3.5em;bottom: 0em;">
+    	<div id="ff-content" class="overhidden">
+            <div id="pulldown" class="pulldown">
+                <span class="pulldown-icon"></span><span id="pulldown-label" class="pulldown-label"></span>
+            </div>
+            <div role="main" id="mainContent" style="margin-top:2.2em;">
+                <div class="J_Linecomment">
+                    当前：药物费用<span>共花费1552.00元</span>
+                </div> 
+                <div class="ui-grid-b J_grid_fourList J_grid_tab J_grid_fourList_textc">
+                    <div class="ui-block-a"><div class="ui-bar">名称</div></div>
+                    <div class="ui-block-b"><div class="ui-bar">费用（元）</div></div>
+                    <div class="ui-block-c"><div class="ui-bar">报销类型</div></div>
+                </div>
+                <ul data-role="listview" class="J_listview_none">
+                	<li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">抗可溶性肝抗原/肝-胰抗原抗体(SLA/LP)测定</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自负5%类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">抗可溶性肝抗原/肝-胰抗原抗体(SLA/LP)测定</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自负5%类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">盐酸氨溴索</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">55.52</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">甲类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">乙酰半胱氨酸</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自费0%类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">愈酚甲麻那敏</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">全自费</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">布洛芬</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">全自费</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">红霉素</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自费0%类</div></div></a>
+                        </div>
+                    </li>
+                	<li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">抗可溶性肝抗原/肝-胰抗原抗体(SLA/LP)测定</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自负5%类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">抗可溶性肝抗原/肝-胰抗原抗体(SLA/LP)测定</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自负5%类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">盐酸氨溴索</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">55.52</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">甲类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">乙酰半胱氨酸</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自费0%类</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">愈酚甲麻那敏</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">全自费</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">布洛芬</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">全自费</div></div></a>
+                        </div>
+                    </li>
+                    <li data-icon="false">
+                        <div class="ui-grid-b J_grid_none J_grid_fourList_textc">
+                            <a href="#" class="ui-grid-b">
+                            <div class="ui-block-a"><div class="ui-bar">红霉素</div></div>
+                            <div class="ui-block-b"><div class="ui-bar">1555.00</div></div>
+                            <div class="ui-block-c"><div class="ui-bar">乙自费0%类</div></div></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="pullup" class="pullup">
+                <span class="pullup-icon"></span><span id="pullup-label" class="pullup-label"></span>
+            </div>
+        </div>
+        <div id="masklayer" class="masklayer"></div>
+    </div>
+    <div data-role="popup" id="popup_calendar" data-overlay-theme="b" data-corners="false" class="J_popup_menology">
+    	<ul data-role="listview" data-icon="false" class="J_popup_listview">
+        	<li><a href="#">2014-01</a></li>
+        	<li><a href="#">2014-02</a></li>
+        	<li><a href="#">2014-03</a></li>
+        	<li><a href="#">2014-04</a></li>
+        	<li><a href="#">2014-05</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
